@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" build-on-make="true" name="UHCAPI:jar">
+    <output-path>$PROJECT_DIR$/../../../../Serveurs/1.8.8/plugins</output-path>
+    <root id="archive" name="UHCAPI.jar">
+      <element id="module-output" name="UHCAPI" />
+    </root>
+  </artifact>
+</component>

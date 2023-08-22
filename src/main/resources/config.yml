@@ -1,0 +1,7 @@
+launch-mode:
+  debug: false
+  dev:   false
+
+# relative to the server root
+gamemodes-path: "../data/gamemodes"
+presets-path:   "../data/presets"

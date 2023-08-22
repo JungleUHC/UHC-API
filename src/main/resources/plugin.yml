@@ -1,0 +1,92 @@
+name: UHCAPI
+author: Altaks
+version: 1.0
+main: fr.altaks.mcoapi.Main
+loadbefore: [MCO_UHC, MCO UHC]
+commands:
+  configstartinv:
+    description:        Configurer l'inventaire de depart de la partie
+    usage:              /configinv <start|load>
+    permission:         dev.mcoapi.configinv
+    permission-message: Vous n'avez pas la permission d'utiliser cette commande
+  configdeathinv:
+    description:        Configurer l'inventaire de mort de la partie
+    usage:              /configdeathinv <start|load>
+    permission:         dev.mcoapi.configdeathinv
+    permission-message: Vous n'avez pas la permission d'utiliser cette commande
+  configitemenchlim:
+    description:        Configurer les limitations des enchantements sur un item
+    usage:              /configitemenchlim <start|load>
+    permission:         dev.mcoapi.configitemenchlim
+    permission-message: Vous n'avez pas la permission d'utiliser cette commande
+  configworldgen:
+    description:        Configurer la generation du monde
+    usage:              /configworldgen <start|execute|goto|whereami>
+    permission:         dev.mcoapi.configworldgen
+    permission-message: Vous n'avez pas la permission d'utiliser cette commande
+  configcraftitems:
+    description:        Configurer les items craftables
+    usage:              /configcraftitems <start|end|show>
+    permission:         dev.mcoapi.configcraftitems
+    permission-message: Vous n'avez pas la permission d'utiliser cette commande
+  configmobspawn:
+    description:        Configurer les spawns de mobs
+    usage:              /configmobspawn <start>
+    permission:         dev.mcoapi.configmobspawn
+    permission-message: Vous n'avez pas la permission d'utiliser cette commande
+  configgame:
+    description:        Configurer la partie
+    usage:              /configgame
+    permission:         dev.mcoapi.configgame
+    permission-message: Vous n'avez pas la permission d'utiliser cette commande
+  configgamemode:
+    description:        Configurer le gamemode
+    usage:              /configgamemode
+    permission:         dev.mcoapi.configgamemode
+    permission-message: Vous n'avez pas la permission d'utiliser cette commande
+  configfinish:
+    description:        Finir de configurer un aspect de la partie
+    usage:              /configfinish
+    permission:         dev.mcoapi.configfinish
+    permission-message: Vous n'avez pas la permission d'utiliser cette commande
+  chat:
+    description:        Changer le statut d activation du chat. Permet d activer ou de desactiver le chat
+    usage:              /chat <on|off>
+    permission:         mcoapi.mod.chatbypass
+    permission-message: Vous n'avez pas la permission d'utiliser cette commande
+  setgroup:
+    description:        Changer la taille des groupes autorises
+    usage:              /setgroup <nombre>
+    permission:         mcoapi.mod.setgroup
+    permission-message: Vous n'avez pas la permission d'utiliser cette commande
+  bypass:
+    description:        Alterne le statut d activation du bypass. Permet de voir les logs de la partie
+    usage:              /bypass
+    permission-message: Vous n'avez pas la permission d'utiliser cette commande
+  mod:
+    description:        Permet de broadcast un message a tous les joueurs
+    usage:              /mod
+    permission:         mcoapi.mod
+    permission-message: Vous n'avez pas la permission d'utiliser cette commande
+  testscenarios:
+    description:        Permet de tester les scenarios
+    usage:              /testscenarios
+    permission:         dev.mcoapi.testscenarios
+    permission-message: Vous n'avez pas la permission d'utiliser cette commande
+  host:
+    description:        Permet de devenir host
+    usage:              /host
+    aliases: "h"
+    permission:         mcoapi.host
+    permission-message: Vous n'avez pas la permission d'utiliser cette commande
+  split:
+    description: Permet de diviser les enchants d un livre en plusieurs livres
+    usage:       /split
+  start:
+    description:        Permet de lancer la partie
+    usage:              /start
+    permission:         mcoapi.host
+    permission-message: Vous n'avez pas la permission d'utiliser cette commande
+  docs:
+    description:        Permet d'ouvrir la documentation
+    usage:              /docs
