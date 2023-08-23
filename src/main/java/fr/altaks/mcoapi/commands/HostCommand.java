@@ -27,7 +27,7 @@ public class HostCommand implements CommandExecutor {
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         if(!command.getName().equalsIgnoreCase("host")) return false;
         if(args.length == 0) return false;
-        if(!(sender.isOp() || (sender instanceof Player && sender.equals(main.getGameManager().getHost()))))
+        if(!((sender instanceof Player && sender.equals(main.getGameManager().getHost())) || sender.hasPermission("host.changehost")))
             return false;
 
         if(args[0].equalsIgnoreCase("sethost") && args.length == 2) {
@@ -65,7 +65,7 @@ public class HostCommand implements CommandExecutor {
             for(int i = 1; i < args.length; i++){
                 message.add(args[i]);
             }
-            Bukkit.broadcastMessage(ChatColor.RED + "[HOST] \u00BB " + ChatColor.WHITE + message.toString());
+            Bukkit.broadcastMessage(ChatColor.RED + "[HOST] \u00BB " + ChatColor.WHITE + message);
             return true;
         } else if(args[0].equalsIgnoreCase("kick") && args.length > 2) {
             Player player = Bukkit.getPlayer(args[1]);
@@ -77,30 +77,28 @@ public class HostCommand implements CommandExecutor {
             for(int i = 2; i < args.length; i++){
                 reason.add(args[i]);
             }
-            player.kickPlayer(ChatColor.GOLD + "Jungle" + ChatColor.YELLOW + "UHC\n\nVous avez été exclu par " + sender.getName() + " pour " + ChatColor.RED + reason.toString());
+            player.kickPlayer(ChatColor.GOLD + "Jungle" + ChatColor.YELLOW + "UHC\n\nVous avez été exclu par " + sender.getName() + " pour " + ChatColor.RED + reason);
             return true;
         } else if(args[0].equalsIgnoreCase("heal") && args.length == 2) {
-            switch (args[1].toLowerCase()) {
-                case "all":
-                    for(Player player : Bukkit.getOnlinePlayers()){
-                        if(player.getGameMode() != GameMode.SPECTATOR) {
-                            player.setHealth(20);
-                            player.sendMessage(Main.PREFIX + "| Vous avez été soigné ");
-                        }
+            if(args[1].equalsIgnoreCase("all")){
+                for(Player player : Bukkit.getOnlinePlayers()){
+                    if(player.getGameMode() != GameMode.SPECTATOR) {
+                        player.setHealth(20);
+                        player.sendMessage(Main.PREFIX + "| Vous avez été soigné ");
                     }
-                    sender.sendMessage(Main.PREFIX + ChatColor.RED + "Vous avez soigné tous les joueurs");
+                }
+                sender.sendMessage(Main.PREFIX + ChatColor.RED + "Vous avez soigné tous les joueurs");
+            } else {
+                Player player = Bukkit.getPlayer(args[1]);
+                if(player == null) {
+                    sender.sendMessage(Main.PREFIX + "Le joueur " + args[1] + " n'est pas connecté");
                     return true;
-                default:
-                    Player player = Bukkit.getPlayer(args[1]);
-                    if(player == null) {
-                        sender.sendMessage(Main.PREFIX + "Le joueur " + args[1] + " n'est pas connecté");
-                        return true;
-                    }
-                    player.setHealth(20);
-                    player.sendMessage(Main.PREFIX + "| Vous avez été soigné ");
-                    sender.sendMessage(Main.PREFIX + ChatColor.RED + "Vous avez soigné " + player.getName());
-                    return true;
+                }
+                player.setHealth(20);
+                player.sendMessage(Main.PREFIX + "| Vous avez été soigné ");
+                sender.sendMessage(Main.PREFIX + ChatColor.RED + "Vous avez soigné " + player.getName());
             }
+            return true;
         } else if(args[0].equalsIgnoreCase("force") && args.length == 2) {
             switch (args[1].toLowerCase()) {
                 case "border":
